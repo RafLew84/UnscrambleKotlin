@@ -13,6 +13,7 @@ import com.example.unscramblekotlin.data.DataProvider
 import com.example.unscramblekotlin.data.MAX_NO_OF_WORDS
 import com.example.unscramblekotlin.databinding.FragmentUnscrambleBinding
 import com.example.unscramblekotlin.viewmodel.GameViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -32,6 +33,9 @@ class UnscrambleFragment : Fragment() {
                 binding.wordCount.text = "${uiState.currentWordCount}/$MAX_NO_OF_WORDS"
                 binding.textViewUnscrambledWord.text = uiState.currentScrambledWord
                 binding.score.text = uiState.score.toString()
+
+                if (uiState.isGameOver)
+                    showFinalScoreDialog(uiState.score)
             }
         }
 
@@ -44,5 +48,19 @@ class UnscrambleFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun showFinalScoreDialog(score: Int, ) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Gratulacje")
+            .setMessage("Wynik: $score")
+            .setCancelable(false)
+            .setNegativeButton("Wyjdź") { _, _ -> exitGame() }
+            .setPositiveButton("Zagraj ponownie") { _, _ -> viewModel.resetGame() }
+            .show()
+    }
+
+    private fun exitGame(){
+        requireActivity().finish()
     }
 }
