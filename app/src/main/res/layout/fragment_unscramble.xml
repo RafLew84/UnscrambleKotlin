@@ -115,7 +115,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView_unscrambled_word">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_input_edit_text"
+                android:id="@+id/userInput"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPersonName|textNoSuggestions"
