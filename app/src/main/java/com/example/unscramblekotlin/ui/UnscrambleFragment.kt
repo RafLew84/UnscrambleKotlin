@@ -39,7 +39,7 @@ class UnscrambleFragment : Fragment() {
             skip.setOnClickListener { viewModel.skipWord() }
             submit.setOnClickListener { viewModel.checkUserGuess() }
             save.setOnClickListener { viewModel.saveGame() }
-            save.setOnClickListener { viewModel.loadGame() }
+            load.setOnClickListener { viewModel.loadGame() }
             userInput.addTextChangedListener { viewModel.updateUserGuess(it.toString()) }
         }
 
